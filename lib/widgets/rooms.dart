@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_responsive_ui/config/palette.dart';
 import 'package:flutter_facebook_responsive_ui/models/models.dart';
+import 'package:flutter_facebook_responsive_ui/widgets/widgets.dart';
 
 class Rooms extends StatelessWidget {
   final List<User> onlineUsers;
@@ -12,7 +13,7 @@ class Rooms extends StatelessWidget {
     return Container(
       height: 60,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
-      color: Colors.orange,
+      color: Colors.white,
       child: ListView.builder(
         itemCount: 1 + onlineUsers.length,
         scrollDirection: Axis.horizontal,
@@ -23,12 +24,10 @@ class Rooms extends StatelessWidget {
               child: _CreateRoomButton(),
             );
           }
-          return Container(
-            margin: const EdgeInsets.all(2),
-            height: 20,
-            width: 20,
-            color: Colors.red,
-          );
+          final user = onlineUsers[index - 1];
+          return Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8),
+              child: ProfileAvatar(imageUrl: user.imageUrl, isActive: true));
         },
       ),
     );
@@ -60,7 +59,7 @@ class _CreateRoomButton extends StatelessWidget {
           Icon(
             Icons.video_call,
             size: 35.0,
-            color: Colors.white,
+            color: Colors.purple,
           ),
           const SizedBox(width: 4.0),
           Text('Create\nRoom'),
